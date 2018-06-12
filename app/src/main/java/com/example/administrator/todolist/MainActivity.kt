@@ -1,4 +1,4 @@
-package com.example.pcapon.todolist
+package com.example.administrator.todolist
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//mListView = (items_list) findViewById(R.id.items_list)
+        //mListView = (items_list) findViewById(R.id.items_list)
+
         val lv = findViewById<ListView>(R.id.items_list)
 
 
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         lv.adapter = adapter
 
         registerForContextMenu(lv)
+
     }
 
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
@@ -108,7 +110,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-
 
 
 

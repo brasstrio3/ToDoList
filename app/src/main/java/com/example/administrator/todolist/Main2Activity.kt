@@ -1,4 +1,4 @@
-package com.example.pcapon.todolist
+package com.example.administrator.todolist
 
 import android.app.Activity
 import android.app.DatePickerDialog
@@ -49,7 +49,7 @@ class Main2Activity : AppCompatActivity() {
             datetext.setText(intent.getStringExtra(DATE))
             buttontxt.setText("Edit")
         }
-
+/*
         val hourSetListener = object  : TimePickerDialog.OnTimeSetListener{
             override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {
                 cal.set(Calendar.HOUR_OF_DAY, hourOfDay)
@@ -83,17 +83,19 @@ class Main2Activity : AppCompatActivity() {
                         cal.get(Calendar.MONTH),
                         cal.get(Calendar.DAY_OF_MONTH)).show()
             }
-        })
+        })*/
     }
+
     fun submitMe(view: View) {
         val data = Intent()
 
         val edit = intent.getIntExtra(EDIT, 0)
-        val description = findViewById(R.id.task_description) as? EditText
-        val hour = findViewById(R.id.task_time) as? EditText
+        val description = findViewById<EditText>(R.id.task_description)
+        val hour = findViewById<EditText>(R.id.task_time)
+        val date = findViewById<EditText>(R.id.task_date)
 
         if (edit == 1)
-            data.putExtra((MainActivity.POSITION, intent.getStringExtra(POSITIONTASK))
+            data.putExtra(MainActivity.POSITION, intent.getStringExtra(POSITIONTASK))
 
         data.putExtra(MainActivity.DESCRIPTION_TEXT, description?.text.toString())
         data.putExtra(MainActivity.DATE, date?.text.toString())
@@ -116,3 +118,4 @@ class Main2Activity : AppCompatActivity() {
         timetext.setText(sdf.format(cal.getTime()))
     }
 }
+

@@ -1,4 +1,4 @@
-package com.example.pcapon.todolist
+package com.example.administrator.todolist
 
 import android.content.Context
 import android.util.Log
@@ -13,7 +13,7 @@ object Storage {
 
     fun writeData(context: Context, tasks: MutableList<Task?>) {
         var fos: FileOutputStream? = null
-        var oos = ObjectOutputStream? = null
+        var oos: ObjectOutputStream? = null
 
         try {
             fos = context.openFileOutput(FILE_NAME, Context.MODE_PRIVATE)
@@ -59,4 +59,5 @@ object Storage {
         return tasks
     }
 }
+
 
