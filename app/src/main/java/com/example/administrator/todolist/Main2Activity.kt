@@ -3,7 +3,6 @@ package com.example.administrator.todolist
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -12,9 +11,7 @@ import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TimePicker
-import kotlinx.android.synthetic.main.activity_main.view.*
 import java.text.SimpleDateFormat
-import java.time.Year
 import java.util.*
 
 class Main2Activity : AppCompatActivity() {
@@ -31,15 +28,16 @@ class Main2Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main2)
 
         val edit = intent.getIntExtra(EDIT, 0)
         val datetext = findViewById<EditText>(R.id.task_date)
         val timetext = findViewById<EditText>(R.id.task_time)
 
+
         if (edit == 1) {
             println("In 2nd activity " + intent.getStringExtra(POSITIONTASK))
-            setTitle("Edit Task")
+            setTitle("Edit task")
 
             val buttontxt = findViewById<Button>(R.id.submit)
             val desctext = findViewById<EditText>(R.id.task_description)
@@ -49,9 +47,9 @@ class Main2Activity : AppCompatActivity() {
             datetext.setText(intent.getStringExtra(DATE))
             buttontxt.setText("Edit")
         }
-/*
+
         val hourSetListener = object  : TimePickerDialog.OnTimeSetListener{
-            override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {
+            override  fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int){
                 cal.set(Calendar.HOUR_OF_DAY, hourOfDay)
                 cal.set(Calendar.MINUTE, minute)
                 updateHourInView()
@@ -59,7 +57,7 @@ class Main2Activity : AppCompatActivity() {
         }
 
         timetext.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View) {
+            override  fun onClick(view: View){
                 TimePickerDialog(this@Main2Activity, hourSetListener,
                         cal.get(Calendar.HOUR_OF_DAY),
                         cal.get(Calendar.MINUTE),
@@ -68,7 +66,8 @@ class Main2Activity : AppCompatActivity() {
         })
 
         val dateSetListener = object : DatePickerDialog.OnDateSetListener {
-            override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int) {
+            override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int,
+                                   dayOfMonth: Int) {
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
@@ -76,17 +75,19 @@ class Main2Activity : AppCompatActivity() {
             }
         }
 
-        datetext.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View) {
+        datetext.setOnClickListener(object : View.OnClickListener   {
+            override fun onClick(view: View){
                 DatePickerDialog(this@Main2Activity, dateSetListener,
                         cal.get(Calendar.YEAR),
                         cal.get(Calendar.MONTH),
                         cal.get(Calendar.DAY_OF_MONTH)).show()
             }
-        })*/
+        })
+
+
     }
 
-    fun submitMe(view: View) {
+    fun submitMe(view: View){
         val data = Intent()
 
         val edit = intent.getIntExtra(EDIT, 0)
@@ -97,9 +98,11 @@ class Main2Activity : AppCompatActivity() {
         if (edit == 1)
             data.putExtra(MainActivity.POSITION, intent.getStringExtra(POSITIONTASK))
 
+
         data.putExtra(MainActivity.DESCRIPTION_TEXT, description?.text.toString())
         data.putExtra(MainActivity.DATE, date?.text.toString())
         data.putExtra(MainActivity.HOUR, hour?.text.toString())
+        //data.putExtras(bundle)
         setResult(Activity.RESULT_OK, data)
         finish()
     }
@@ -111,11 +114,12 @@ class Main2Activity : AppCompatActivity() {
         datetext.setText(sdf.format(cal.getTime()))
     }
 
-    private fun updateHourInView() {
+    private  fun updateHourInView(){
         val timetext = findViewById<EditText>(R.id.task_time)
         val myFormat = "HH:mm"
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         timetext.setText(sdf.format(cal.getTime()))
     }
-}
 
+
+}

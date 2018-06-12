@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         //mListView = (items_list) findViewById(R.id.items_list)
 
+
+
         val lv = findViewById<ListView>(R.id.items_list)
 
 
@@ -47,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         lv.adapter = adapter
 
         registerForContextMenu(lv)
-
     }
 
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
@@ -63,7 +64,7 @@ class MainActivity : AppCompatActivity() {
 
         when (item?.title){
             "Delete" -> deleteTask(info.position)
-            "Edit" -> editTask(info.position)
+            "Edit" ->   editTask(info.position)
         }
 
         return super.onContextItemSelected(item)
@@ -110,6 +111,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
+
 
 
 
@@ -186,7 +188,7 @@ class MainActivity : AppCompatActivity() {
         println("ON RESUME")
         val tasksfile = Storage.readData(this)
 
-// We only want to set the tasks if the list is already empty.
+        // We only want to set the tasks if the list is already empty.
         if (adapter?.tasks != null && (adapter?.tasks?.isEmpty() ?: true)) {
             adapter?.tasks = tasksfile
         }
